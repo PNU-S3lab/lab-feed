@@ -17,6 +17,8 @@ S3Lab Slack `#lab-피드`에 우수 학회 CFP와 정보컴퓨터공학부 대�
 - 마감 14일 전에 한 번 (마감일마다 한 번만, 매일 반복하지 않음)
 - 학과 공지는 새 글마다 한 번
 
+매일 `#lab-피드` 채널 캔버스(마감 일정표)와 구독용 캘린더 [`cfp.ics`](https://raw.githubusercontent.com/PNU-S3lab/lab-feed/main/cfp.ics)도 갱신합니다.
+
 첫 실행에서는 하나씩 알리지 않고 현재 접수 중인 목록만 한 번 올립니다. 이미 알린 항목은 `state.json`에 기록됩니다.
 
 ## 설치
@@ -24,7 +26,8 @@ S3Lab Slack `#lab-피드`에 우수 학회 CFP와 정보컴퓨터공학부 대�
 1. https://api.slack.com/apps → Create New App → From a manifest → S3Lab → `manifest.yml` 붙여넣기
 2. Incoming Webhooks → Add New Webhook → `#lab-피드` 선택 → 웹훅 URL 복사
 3. 이 저장소를 GitHub에 올리고 Settings → Secrets and variables → Actions → `SLACK_WEBHOOK_URL`에 웹훅 URL 저장
-4. Actions 탭 → lab-feed → Run workflow로 첫 실행. 이후 매일 09:00 KST에 자동 실행
+4. OAuth & Permissions에서 Bot User OAuth Token을 복사해 Secret `SLACK_BOT_TOKEN`에 저장 (캔버스 갱신용)
+5. Actions 탭 → lab-feed → Run workflow로 첫 실행. 이후 매일 09:00 KST에 자동 실행
 
 로컬 확인: `pip install -r requirements.txt && python3 feed.py --dry-run`
 

@@ -34,6 +34,7 @@ DEPT_BASE = "https://cse.pusan.ac.kr"
 REMIND_DAYS = 14
 STATE_FILE = Path(os.environ.get("STATE_FILE", Path(__file__).with_name("state.json")))
 ICS_FILE = Path(os.environ.get("ICS_FILE", Path(__file__).with_name("cfp.ics")))
+CHANNEL_ID = os.environ.get("CHANNEL_ID", "C0CE11WLCN6")  # #lab-피드
 VARIANT_RE = re.compile(r"\s*\((oral|poster|spotlight)\)$")
 
 
@@ -209,6 +210,52 @@ def write_ics(confs, now):
     ICS_FILE.write_text("\r\n".join(ics_fold(l) for l in lines) + "\r\n")
 
 
+# ---------- 채널 캔버스 ----------
+
+def slack_api(method, payload):
+    req = urllib.request.Request(
+        f"https://slack.com/api/{method}", json.dumps(payload).encode(),
+        {"Content-Type": "application/json; charset=utf-8", "Authorization": f"Bearer {os.environ['SLACK_BOT_TOKEN']}"})
+    with urllib.request.urlopen(req, timeout=30) as r:
+        resp = json.loads(r.read())
+    if not resp.get("ok"):
+        raise RuntimeError(f"{method}: {resp.get('error')}")
+    return resp
+
+
+def canvas_markdown(confs, now):
+    rows = sorted(((dt, label, c) for c in confs for label, dt in c["deadlines"]), key=lambda r: (r[0], r[2]["name"]))
+    lines = [
+        "# 학회 마감 일정",
+        f"매일 09:00 자동 갱신 · 마지막 갱신 {now:%Y-%m-%d %H:%M} · 시간은 한국 시간",
+        "",
+        "CORE A*·A 또는 정보과학회 최우수·우수 학회만 모았습니다. "
+        "BK 점수는 BK21플러스 2018 목록 기준입니다. "
+        "[구독용 캘린더 파일](https://raw.githubusercontent.com/PNU-S3lab/lab-feed/main/cfp.ics)",
+    ]
+    month = None
+    for dt, label, c in rows:
+        k = dt.astimezone(KST)
+        if (k.year, k.month) != month:
+            month = (k.year, k.month)
+            lines += ["", f"## {k.year}년 {k.month}월", "", "| 마감 | D-day | 학회 | 등급 |", "| --- | --- | --- | --- |"]
+        dday = (k.date() - now.date()).days
+        lines.append(f"| {when(dt)} {label} | D-{dday} | [{c['name']} {c['year']}]({c['link']}) | {c['grade']} |")
+    if not rows:
+        lines += ["", "지금 접수 중인 학회가 없습니다."]
+    return "\n".join(lines)
+
+
+def update_canvas(state, confs, now):
+    content = {"type": "markdown", "markdown": canvas_markdown(confs, now)}
+    if state.get("canvas_id"):
+        slack_api("canvases.edit", {"canvas_id": state["canvas_id"],
+                                    "changes": [{"operation": "replace", "document_content": content}]})
+    else:
+        state["canvas_id"] = slack_api("conversations.canvases.create",
+                                       {"channel_id": CHANNEL_ID, "document_content": content})["canvas_id"]
+
+
 # ---------- 학과 공지 ----------
 
 def dept_posts():
@@ -239,6 +286,7 @@ def post(text, dry):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true", help="Slack에 올리지 않고 출력만")
+    ap.add_argument("--canvas-only", action="store_true", help="알림 없이 캔버스와 캘린더만 갱신")
     args = ap.parse_args()
 
     now = datetime.now(KST)
@@ -249,6 +297,13 @@ def main():
     state.setdefault("dept", [])
 
     confs = qualified(now)
+    if args.dry_run:
+        print(canvas_markdown(confs, now), end="\n\n")
+    if args.canvas_only:
+        update_canvas(state, confs, now)
+        write_ics(confs, now)
+        STATE_FILE.write_text(json.dumps(state, ensure_ascii=False, indent=1))
+        return
     if first_run:
         # 처음에는 하나씩 알리지 않고, 현재 목록만 한 번 요약한다
         state["cfp"] = [c["id"] for c in confs]
@@ -278,6 +333,8 @@ def main():
 
     state["dept"] = state["dept"][-200:]
     if not args.dry_run:
+        if os.environ.get("SLACK_BOT_TOKEN"):
+            update_canvas(state, confs, now)
         STATE_FILE.write_text(json.dumps(state, ensure_ascii=False, indent=1))
         write_ics(confs, now)
 
