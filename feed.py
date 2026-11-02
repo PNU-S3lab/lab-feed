@@ -333,10 +333,12 @@ def main():
 
     state["dept"] = state["dept"][-200:]
     if not args.dry_run:
-        if os.environ.get("SLACK_BOT_TOKEN"):
-            update_canvas(state, confs, now)
         STATE_FILE.write_text(json.dumps(state, ensure_ascii=False, indent=1))
         write_ics(confs, now)
+        if os.environ.get("SLACK_BOT_TOKEN"):
+            # 캔버스가 실패해도 알림 기록은 이미 저장되어 같은 알림이 다시 가지 않는다
+            update_canvas(state, confs, now)
+            STATE_FILE.write_text(json.dumps(state, ensure_ascii=False, indent=1))
 
 
 if __name__ == "__main__":
