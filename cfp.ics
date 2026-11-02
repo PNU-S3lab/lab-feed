@@ -8,7 +8,7 @@ X-WR-CALDESC:CORE A*·A 또는 정보과학회 최우수·우수 학회
  마감일 (lab-feed)
 BEGIN:VEVENT
 UID:pam-2027-20261107T1159@lab-feed.s3lab
-DTSTAMP:20261102T070746Z
+DTSTAMP:20261102T104824Z
 DTSTART:20261107T115900Z
 DTEND:20261107T122900Z
 SUMMARY:PAM 2027 마감
@@ -17,8 +17,18 @@ DESCRIPTION:Passive and Active Measurement Conference\nCORE B · 정보과
 URL:https://pam2027.furg.br/
 END:VEVENT
 BEGIN:VEVENT
+UID:pam-2027-event@lab-feed.s3lab
+DTSTAMP:20261102T104824Z
+DTSTART;VALUE=DATE:20270322
+DTEND;VALUE=DATE:20270325
+SUMMARY:PAM 2027 개최 (Virtual)
+DESCRIPTION:Passive and Active Measurement Conference\nCORE B · 정보과
+ 학회 우수 · BK 없음\nhttps://pam2027.furg.br/
+URL:https://pam2027.furg.br/
+END:VEVENT
+BEGIN:VEVENT
 UID:s&poakland-2027-20261118T1159@lab-feed.s3lab
-DTSTAMP:20261102T070746Z
+DTSTAMP:20261102T104824Z
 DTSTART:20261118T115900Z
 DTEND:20261118T122900Z
 SUMMARY:S&P (Oakland) 2027 마감
@@ -28,8 +38,18 @@ DESCRIPTION:IEEE Symposium on Security and Privacy\nCORE A* · 정보과
 URL:https://sp2027.ieee-security.org/
 END:VEVENT
 BEGIN:VEVENT
+UID:s&poakland-2027-event@lab-feed.s3lab
+DTSTAMP:20261102T104824Z
+DTSTART;VALUE=DATE:20270517
+DTEND;VALUE=DATE:20270521
+SUMMARY:S&P (Oakland) 2027 개최 (Montreal\, Canada)
+DESCRIPTION:IEEE Symposium on Security and Privacy\nCORE A* · 정보과
+ 학회 최우수 · BK 4\nhttps://sp2027.ieee-security.org/
+URL:https://sp2027.ieee-security.org/
+END:VEVENT
+BEGIN:VEVENT
 UID:imc-2027-20261118T1159@lab-feed.s3lab
-DTSTAMP:20261102T070746Z
+DTSTAMP:20261102T104824Z
 DTSTART:20261118T115900Z
 DTEND:20261118T122900Z
 SUMMARY:IMC 2027 마감
@@ -40,7 +60,7 @@ URL:https://conferences.sigcomm.org/imc/2027/
 END:VEVENT
 BEGIN:VEVENT
 UID:imc-2027-20270408T1159@lab-feed.s3lab
-DTSTAMP:20261102T070746Z
+DTSTAMP:20261102T104824Z
 DTSTART:20270408T115900Z
 DTEND:20270408T122900Z
 SUMMARY:IMC 2027 마감
@@ -50,8 +70,18 @@ DESCRIPTION:ACM Internet Measurement Conference\nCORE A · 정보과학회
 URL:https://conferences.sigcomm.org/imc/2027/
 END:VEVENT
 BEGIN:VEVENT
+UID:imc-2027-event@lab-feed.s3lab
+DTSTAMP:20261102T104824Z
+DTSTART;VALUE=DATE:20271025
+DTEND;VALUE=DATE:20271030
+SUMMARY:IMC 2027 개최 (Atlanta\, GA\, USA)
+DESCRIPTION:ACM Internet Measurement Conference\nCORE A · 정보과학회
+  우수 · BK 2\nhttps://conferences.sigcomm.org/imc/2027/
+URL:https://conferences.sigcomm.org/imc/2027/
+END:VEVENT
+BEGIN:VEVENT
 UID:wsdm-2027-20261118T1159@lab-feed.s3lab
-DTSTAMP:20261102T070746Z
+DTSTAMP:20261102T104824Z
 DTSTART:20261118T115959Z
 DTEND:20261118T122959Z
 SUMMARY:WSDM 2027 논문 마감
@@ -61,8 +91,19 @@ DESCRIPTION:ACM International Conference on Web Search and Data Mining\nCO
 URL:https://www.wsdm-conference.org/2027/
 END:VEVENT
 BEGIN:VEVENT
+UID:wsdm-2027-event@lab-feed.s3lab
+DTSTAMP:20261102T104824Z
+DTSTART;VALUE=DATE:20270215
+DTEND;VALUE=DATE:20270220
+SUMMARY:WSDM 2027 개최 (Hong Kong\, Hong Kong)
+DESCRIPTION:ACM International Conference on Web Search and Data Mining\nCO
+ RE A* · 정보과학회 최우수 · BK 3\nhttps://www.wsdm-conference.o
+ rg/2027/
+URL:https://www.wsdm-conference.org/2027/
+END:VEVENT
+BEGIN:VEVENT
 UID:codaspy-2027-20261124T1159@lab-feed.s3lab
-DTSTAMP:20261102T070746Z
+DTSTAMP:20261102T104824Z
 DTSTART:20261124T115900Z
 DTEND:20261124T122900Z
 SUMMARY:CODASPY 2027 마감
@@ -72,8 +113,18 @@ DESCRIPTION:ACM Conference on Data and Application Security and Privacy\n
 URL:http://www.codaspy.org/2027/
 END:VEVENT
 BEGIN:VEVENT
+UID:codaspy-2027-event@lab-feed.s3lab
+DTSTAMP:20261102T104824Z
+DTSTART;VALUE=DATE:20270614
+DTEND;VALUE=DATE:20270618
+SUMMARY:CODASPY 2027 개최 (Fort Collins\, CO\, USA)
+DESCRIPTION:ACM Conference on Data and Application Security and Privacy\n
+ 정보과학회 우수 · BK 없음\nhttp://www.codaspy.org/2027/
+URL:http://www.codaspy.org/2027/
+END:VEVENT
+BEGIN:VEVENT
 UID:euros&p-2027-20261203T1159@lab-feed.s3lab
-DTSTAMP:20261102T070746Z
+DTSTAMP:20261102T104824Z
 DTSTART:20261203T115900Z
 DTEND:20261203T122900Z
 SUMMARY:Euro S&P 2027 마감
@@ -83,8 +134,18 @@ DESCRIPTION:IEEE European Symposium on Security and Privacy\nCORE A · 정
 URL:https://eurosp2027.ieee-security.org/
 END:VEVENT
 BEGIN:VEVENT
+UID:euros&p-2027-event@lab-feed.s3lab
+DTSTAMP:20261102T104824Z
+DTSTART;VALUE=DATE:20270705
+DTEND;VALUE=DATE:20270710
+SUMMARY:Euro S&P 2027 개최 (Madrid\, Spain)
+DESCRIPTION:IEEE European Symposium on Security and Privacy\nCORE A · 정
+ 보과학회 우수 · BK 없음\nhttps://eurosp2027.ieee-security.org/
+URL:https://eurosp2027.ieee-security.org/
+END:VEVENT
+BEGIN:VEVENT
 UID:dsn-2027-20261203T1159@lab-feed.s3lab
-DTSTAMP:20261102T070746Z
+DTSTAMP:20261102T104824Z
 DTSTART:20261203T115900Z
 DTEND:20261203T122900Z
 SUMMARY:DSN 2027 마감
@@ -94,8 +155,19 @@ DESCRIPTION:The International Conference on Dependable Systems and Network
 URL:https://dsn2027-berlin.github.io/
 END:VEVENT
 BEGIN:VEVENT
+UID:dsn-2027-event@lab-feed.s3lab
+DTSTAMP:20261102T104824Z
+DTSTART;VALUE=DATE:20270622
+DTEND;VALUE=DATE:20270626
+SUMMARY:DSN 2027 개최 (Berlin\, Germany)
+DESCRIPTION:The International Conference on Dependable Systems and Network
+ s\nCORE A · 정보과학회 우수 · BK 2\nhttps://dsn2027-berlin.githu
+ b.io/
+URL:https://dsn2027-berlin.github.io/
+END:VEVENT
+BEGIN:VEVENT
 UID:asiaccs-2027-20261212T1159@lab-feed.s3lab
-DTSTAMP:20261102T070746Z
+DTSTAMP:20261102T104824Z
 DTSTART:20261212T115900Z
 DTEND:20261212T122900Z
 SUMMARY:ASIA CCS 2027 마감
@@ -105,8 +177,19 @@ DESCRIPTION:ACM Asia Conference on Computer and Communications Security\nC
 URL:https://asiaccs2027.cityu.edu.mo/home/index.html
 END:VEVENT
 BEGIN:VEVENT
+UID:asiaccs-2027-event@lab-feed.s3lab
+DTSTAMP:20261102T104824Z
+DTSTART;VALUE=DATE:20270712
+DTEND;VALUE=DATE:20270717
+SUMMARY:ASIA CCS 2027 개최 (Macau)
+DESCRIPTION:ACM Asia Conference on Computer and Communications Security\nC
+ ORE A · 정보과학회 우수 · BK 1\nhttps://asiaccs2027.cityu.edu.mo
+ /home/index.html
+URL:https://asiaccs2027.cityu.edu.mo/home/index.html
+END:VEVENT
+BEGIN:VEVENT
 UID:issta-2027-20270112T1159@lab-feed.s3lab
-DTSTAMP:20261102T070746Z
+DTSTAMP:20261102T104824Z
 DTSTART:20270112T115900Z
 DTEND:20270112T122900Z
 SUMMARY:ISSTA 2027 마감
@@ -116,8 +199,19 @@ DESCRIPTION:ACM SIGSOFT International Symposium on Software Testing and An
 URL:https://conf.researchr.org/home/issta-2027
 END:VEVENT
 BEGIN:VEVENT
+UID:issta-2027-event@lab-feed.s3lab
+DTSTAMP:20261102T104824Z
+DTSTART;VALUE=DATE:20270907
+DTEND;VALUE=DATE:20270911
+SUMMARY:ISSTA 2027 개최 (Singapore)
+DESCRIPTION:ACM SIGSOFT International Symposium on Software Testing and An
+ alysis\nCORE A · 정보과학회 최우수 · BK 2\nhttps://conf.researc
+ hr.org/home/issta-2027
+URL:https://conf.researchr.org/home/issta-2027
+END:VEVENT
+BEGIN:VEVENT
 UID:acns-2027-20270122T1159@lab-feed.s3lab
-DTSTAMP:20261102T070746Z
+DTSTAMP:20261102T104824Z
 DTSTART:20270122T115900Z
 DTEND:20270122T122900Z
 SUMMARY:ACNS 2027 마감
@@ -127,8 +221,19 @@ DESCRIPTION:International Conference on Applied Cryptography and Network S
 URL:https://acns2027.isg.rhul.ac.uk/
 END:VEVENT
 BEGIN:VEVENT
+UID:acns-2027-event@lab-feed.s3lab
+DTSTAMP:20261102T104824Z
+DTSTART;VALUE=DATE:20270628
+DTEND;VALUE=DATE:20270702
+SUMMARY:ACNS 2027 개최 (Egham\, Surrey\, UK)
+DESCRIPTION:International Conference on Applied Cryptography and Network S
+ ecurity\nCORE B · 정보과학회 우수 · BK 없음\nhttps://acns2027.
+ isg.rhul.ac.uk/
+URL:https://acns2027.isg.rhul.ac.uk/
+END:VEVENT
+BEGIN:VEVENT
 UID:usenixsecurity-2027-20270127T1159@lab-feed.s3lab
-DTSTAMP:20261102T070746Z
+DTSTAMP:20261102T104824Z
 DTSTART:20270127T115900Z
 DTEND:20270127T122900Z
 SUMMARY:USENIX Security 2027 마감
@@ -138,8 +243,18 @@ DESCRIPTION:USENIX Security Symposium\nCORE A* · 정보과학회 최우
 URL:https://www.usenix.org/conference/usenixsecurity27
 END:VEVENT
 BEGIN:VEVENT
+UID:usenixsecurity-2027-event@lab-feed.s3lab
+DTSTAMP:20261102T104824Z
+DTSTART;VALUE=DATE:20270811
+DTEND;VALUE=DATE:20270814
+SUMMARY:USENIX Security 2027 개최 (Denver\, CO\, USA)
+DESCRIPTION:USENIX Security Symposium\nCORE A* · 정보과학회 최우
+ 수 · BK 3\nhttps://www.usenix.org/conference/usenixsecurity27
+URL:https://www.usenix.org/conference/usenixsecurity27
+END:VEVENT
+BEGIN:VEVENT
 UID:csf-2027-20270129T1159@lab-feed.s3lab
-DTSTAMP:20261102T070746Z
+DTSTAMP:20261102T104824Z
 DTSTART:20270129T115900Z
 DTEND:20270129T122900Z
 SUMMARY:CSF 2027 마감
