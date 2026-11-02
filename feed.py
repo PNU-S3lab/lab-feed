@@ -32,7 +32,6 @@ DEPT_RSS = "https://cse.pusan.ac.kr/bbs/cse/2058/rssList.do?row=30"
 DEPT_BASE = "https://cse.pusan.ac.kr"
 
 REMIND_DAYS = 14
-SUMMARY_WEEKS = 8
 STATE_FILE = Path(os.environ.get("STATE_FILE", Path(__file__).with_name("state.json")))
 VARIANT_RE = re.compile(r"\s*\((oral|poster|spotlight)\)$")
 
@@ -231,14 +230,6 @@ def main():
                     state["reminded"].append(key)
         if soon:
             post(f"[CFP] 마감 {REMIND_DAYS}일 이내\n" + "\n".join(soon), args.dry_run)
-
-        week = now.strftime("%G-W%V")
-        if now.weekday() == 0 and state.get("summary") != week:
-            horizon = now + timedelta(weeks=SUMMARY_WEEKS)
-            upcoming = [c for c in confs if c["deadlines"][0][1] <= horizon]
-            if upcoming:
-                post(f"[CFP] 앞으로 {SUMMARY_WEEKS}주 안에 마감하는 학회\n" + "\n".join(cfp_line(c) for c in upcoming), args.dry_run)
-            state["summary"] = week
 
         for link, title, url in reversed(list(dept_posts())):
             if link not in state["dept"]:
