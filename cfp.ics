@@ -1,0 +1,151 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//S3Lab//lab-feed//KO
+CALSCALE:GREGORIAN
+X-WR-CALNAME:S3Lab 학회 마감
+X-WR-TIMEZONE:Asia/Seoul
+X-WR-CALDESC:CORE A*·A 또는 정보과학회 최우수·우수 학회 
+ 마감일 (lab-feed)
+BEGIN:VEVENT
+UID:pam-2027-20261107T1159@lab-feed.s3lab
+DTSTAMP:20261102T065646Z
+DTSTART:20261107T115900Z
+DTEND:20261107T122900Z
+SUMMARY:PAM 2027 마감
+DESCRIPTION:Passive and Active Measurement Conference\nCORE B · 정보과
+ 학회 우수 · BK 없음\nMarch 22-24 Virtual\nhttps://pam2027.furg.br/
+URL:https://pam2027.furg.br/
+END:VEVENT
+BEGIN:VEVENT
+UID:s&poakland-2027-20261118T1159@lab-feed.s3lab
+DTSTAMP:20261102T065646Z
+DTSTART:20261118T115900Z
+DTEND:20261118T122900Z
+SUMMARY:S&P (Oakland) 2027 마감
+DESCRIPTION:IEEE Symposium on Security and Privacy\nCORE A* · 정보과
+ 학회 최우수 · BK 4\nMay 17-20 Montreal\, Canada\nhttps://sp2027.iee
+ e-security.org/
+URL:https://sp2027.ieee-security.org/
+END:VEVENT
+BEGIN:VEVENT
+UID:imc-2027-20261118T1159@lab-feed.s3lab
+DTSTAMP:20261102T065646Z
+DTSTART:20261118T115900Z
+DTEND:20261118T122900Z
+SUMMARY:IMC 2027 마감
+DESCRIPTION:ACM Internet Measurement Conference\nCORE A · 정보과학회
+  우수 · BK 2\nOctober 25-29 Atlanta\, GA\, USA\nhttps://conferences.si
+ gcomm.org/imc/2027/
+URL:https://conferences.sigcomm.org/imc/2027/
+END:VEVENT
+BEGIN:VEVENT
+UID:imc-2027-20270408T1159@lab-feed.s3lab
+DTSTAMP:20261102T065646Z
+DTSTART:20270408T115900Z
+DTEND:20270408T122900Z
+SUMMARY:IMC 2027 마감
+DESCRIPTION:ACM Internet Measurement Conference\nCORE A · 정보과학회
+  우수 · BK 2\nOctober 25-29 Atlanta\, GA\, USA\nhttps://conferences.si
+ gcomm.org/imc/2027/
+URL:https://conferences.sigcomm.org/imc/2027/
+END:VEVENT
+BEGIN:VEVENT
+UID:wsdm-2027-20261118T1159@lab-feed.s3lab
+DTSTAMP:20261102T065646Z
+DTSTART:20261118T115959Z
+DTEND:20261118T122959Z
+SUMMARY:WSDM 2027 논문 마감
+DESCRIPTION:ACM International Conference on Web Search and Data Mining\nCO
+ RE A* · 정보과학회 최우수 · BK 3\nFebruary 15-19\, 2027 Hong Ko
+ ng\, Hong Kong\nhttps://www.wsdm-conference.org/2027/
+URL:https://www.wsdm-conference.org/2027/
+END:VEVENT
+BEGIN:VEVENT
+UID:codaspy-2027-20261124T1159@lab-feed.s3lab
+DTSTAMP:20261102T065646Z
+DTSTART:20261124T115900Z
+DTEND:20261124T122900Z
+SUMMARY:CODASPY 2027 마감
+DESCRIPTION:ACM Conference on Data and Application Security and Privacy\n
+ 정보과학회 우수 · BK 없음\nJune 14-17 Fort Collins\, CO\, USA\n
+ http://www.codaspy.org/2027/
+URL:http://www.codaspy.org/2027/
+END:VEVENT
+BEGIN:VEVENT
+UID:euros&p-2027-20261203T1159@lab-feed.s3lab
+DTSTAMP:20261102T065646Z
+DTSTART:20261203T115900Z
+DTEND:20261203T122900Z
+SUMMARY:Euro S&P 2027 마감
+DESCRIPTION:IEEE European Symposium on Security and Privacy\nCORE A · 정
+ 보과학회 우수 · BK 없음\nJuly 5 - 9 Madrid\, Spain\nhttps://euro
+ sp2027.ieee-security.org/
+URL:https://eurosp2027.ieee-security.org/
+END:VEVENT
+BEGIN:VEVENT
+UID:dsn-2027-20261203T1159@lab-feed.s3lab
+DTSTAMP:20261102T065646Z
+DTSTART:20261203T115900Z
+DTEND:20261203T122900Z
+SUMMARY:DSN 2027 마감
+DESCRIPTION:The International Conference on Dependable Systems and Network
+ s\nCORE A · 정보과학회 우수 · BK 2\nJune 22-25 Berlin\, Germany\
+ nhttps://dsn2027-berlin.github.io/
+URL:https://dsn2027-berlin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:asiaccs-2027-20261212T1159@lab-feed.s3lab
+DTSTAMP:20261102T065646Z
+DTSTART:20261212T115900Z
+DTEND:20261212T122900Z
+SUMMARY:ASIA CCS 2027 마감
+DESCRIPTION:ACM Asia Conference on Computer and Communications Security\nC
+ ORE A · 정보과학회 우수 · BK 1\nJuly 12-16 Macau\nhttps://asiacc
+ s2027.cityu.edu.mo/home/index.html
+URL:https://asiaccs2027.cityu.edu.mo/home/index.html
+END:VEVENT
+BEGIN:VEVENT
+UID:issta-2027-20270112T1159@lab-feed.s3lab
+DTSTAMP:20261102T065646Z
+DTSTART:20270112T115900Z
+DTEND:20270112T122900Z
+SUMMARY:ISSTA 2027 마감
+DESCRIPTION:ACM SIGSOFT International Symposium on Software Testing and An
+ alysis\nCORE A · 정보과학회 최우수 · BK 2\nSeptember 7 - 10 Sin
+ gapore\nhttps://conf.researchr.org/home/issta-2027
+URL:https://conf.researchr.org/home/issta-2027
+END:VEVENT
+BEGIN:VEVENT
+UID:acns-2027-20270122T1159@lab-feed.s3lab
+DTSTAMP:20261102T065646Z
+DTSTART:20270122T115900Z
+DTEND:20270122T122900Z
+SUMMARY:ACNS 2027 마감
+DESCRIPTION:International Conference on Applied Cryptography and Network S
+ ecurity\nCORE B · 정보과학회 우수 · BK 없음\nJune 28 - July 1 
+ Egham\, Surrey\, UK\nhttps://acns2027.isg.rhul.ac.uk/
+URL:https://acns2027.isg.rhul.ac.uk/
+END:VEVENT
+BEGIN:VEVENT
+UID:usenixsecurity-2027-20270127T1159@lab-feed.s3lab
+DTSTAMP:20261102T065646Z
+DTSTART:20270127T115900Z
+DTEND:20270127T122900Z
+SUMMARY:USENIX Security 2027 마감
+DESCRIPTION:USENIX Security Symposium\nCORE A* · 정보과학회 최우
+ 수 · BK 3\nAugust 11-13 Denver\, CO\, USA\nhttps://www.usenix.org/confe
+ rence/usenixsecurity27
+URL:https://www.usenix.org/conference/usenixsecurity27
+END:VEVENT
+BEGIN:VEVENT
+UID:csf-2027-20270129T1159@lab-feed.s3lab
+DTSTAMP:20261102T065646Z
+DTSTART:20270129T115900Z
+DTEND:20270129T122900Z
+SUMMARY:CSF 2027 마감
+DESCRIPTION:IEEE Computer Security Foundations Symposium\nCORE A · 정보
+ 과학회 우수 · BK 1\nTBA Tokyo\, Japan\nhttps://www.ieee-security.or
+ g/TC/CSF2027/
+URL:https://www.ieee-security.org/TC/CSF2027/
+END:VEVENT
+END:VCALENDAR

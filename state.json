@@ -13,7 +13,9 @@
   "usenixsecurity-2027",
   "csf-2027"
  ],
- "reminded": [],
+ "reminded": [
+  "pam-2027-202611062359"
+ ],
  "dept": [
   "/bbs/cse/2058/1468754/artclView.do",
   "/bbs/cse/2058/1468747/artclView.do",
