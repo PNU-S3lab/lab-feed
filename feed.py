@@ -103,6 +103,36 @@ def parse_dt(s, tz):
         return None
 
 
+MONTHS = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
+NUM = {"one": 1, "two": 2, "three": 3}
+
+
+def abstract_deadlines(comment, papers):
+    """comment에 적힌 초록·논문 등록 마감을 논문 마감 목록에 맞춰 계산한다"""
+    text = str(comment or "")
+    if not re.search(r"abstract|regist", text, re.I) or re.search(r"once accepted", text, re.I):
+        return []
+    rel = re.search(r"(\d+|one|two|three) (week|day)s? before", text, re.I)
+    if rel:
+        n = int(NUM.get(rel[1].lower(), rel[1]))
+        step = timedelta(weeks=n) if rel[2].lower() == "week" else timedelta(days=n)
+        return [dt - step for dt in papers]
+    m = re.search(r"([A-Za-z]{3})[a-z]*\.? (\d{1,2})(?:st|nd|rd|th)?(?:,? (\d{4}))?", text)
+    if not m or m[1].lower() not in MONTHS:
+        return []
+    out = []
+    for dt in papers:  # 연도가 없으면 논문 마감 직전 60일 안에 드는 날짜로 본다
+        for y in ([int(m[3])] if m[3] else [dt.year, dt.year - 1]):
+            try:
+                ab = dt.replace(year=y, month=MONTHS.index(m[1].lower()) + 1, day=int(m[2]))
+            except ValueError:
+                continue
+            if timedelta(0) < dt - ab <= timedelta(days=60):
+                out.append(ab)
+                break
+    return out
+
+
 def sec_confs():
     core_of = {"ASTAR": "A*", "CORE-A": "A", "CORE-B": "B", "CORE-C": "C"}
     for e in yaml.safe_load(get(SEC_YML)):
@@ -112,12 +142,15 @@ def sec_confs():
         tz = parse_tz(e.get("timezone"))
         deadlines = e["deadline"] if isinstance(e["deadline"], list) else [e["deadline"]]
         dblp = re.search(r"db/(conf/[^/]+)/", e.get("dblp") or "")
+        papers = [dt for dt in (parse_dt(d, tz) for d in deadlines if d) if dt]
+        abstracts = abstract_deadlines(e.get("comment"), papers)
         yield {
             "name": e["name"], "year": e["year"], "full": e.get("description", ""),
             "link": e.get("link", ""), "date": e.get("date", ""), "place": e.get("place", ""),
             "core": next((core_of[t] for t in tags if t in core_of), ""),
             "dblp": dblp.group(1) if dblp else "",
-            "deadlines": [("마감", dt) for dt in (parse_dt(d, tz) for d in deadlines if d) if dt],
+            "deadlines": [("초록 마감", dt) for dt in abstracts]
+            + [("논문 마감" if abstracts else "마감", dt) for dt in papers],
         }
 
 
@@ -150,7 +183,7 @@ def qualified(now):
         r = by_dblp.get(c["dblp"]) or by_name.get(norm(c["name"])) or {"kiise": "", "bk": {"": ""}}
         if c["core"] not in ("A*", "A") and r["kiise"] not in ("최우수", "우수"):
             continue
-        c["deadlines"] = sorted(d for d in c["deadlines"] if d[1] > now)
+        c["deadlines"] = sorted((d for d in c["deadlines"] if d[1] > now), key=lambda d: d[1])
         if not c["deadlines"]:
             continue
         grade = [f"CORE {c['core']}" if c["core"] else "", f"정보과학회 {r['kiise']}" if r["kiise"] else "", bk_label(r["bk"])]
@@ -187,22 +220,49 @@ def ics_fold(line):
     return "\r\n".join(out + [cur])
 
 
+def deadline_spans(deadlines):
+    """[(label, dt)] → 초록 마감은 바로 뒤의 논문 마감과 묶은 (처음, 끝) 쌍 목록"""
+    spans, pending = [], None
+    for d in deadlines:
+        if d[0] == "초록 마감":
+            if pending:
+                spans.append((pending, pending))
+            pending = d
+        elif pending and d[1] - pending[1] <= timedelta(days=60):
+            spans.append((pending, d))
+            pending = None
+        else:
+            if pending:
+                spans.append((pending, pending))
+                pending = None
+            spans.append((d, d))
+    if pending:
+        spans.append((pending, pending))
+    return spans
+
+
 def write_ics(confs, now):
     stamp = now.astimezone(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//S3Lab//lab-feed//KO", "CALSCALE:GREGORIAN",
              "X-WR-CALNAME:S3Lab 학회 마감", "X-WR-TIMEZONE:Asia/Seoul",
              "X-WR-CALDESC:CORE A*·A 또는 정보과학회 최우수·우수 학회 마감일 (lab-feed)"]
     for c in confs:
-        for label, dt in c["deadlines"]:
-            start = dt.astimezone(timezone.utc)
+        info = f"{c['full']}\n{c['grade']}\n{c['date']} {c['place']}\n{c['link']}"
+        for first, last in deadline_spans(c["deadlines"]):
+            start, end = first[1].astimezone(timezone.utc), last[1].astimezone(timezone.utc)
+            if first is last:
+                title, desc, end = f"{c['name']} {c['year']} {first[0]}", info, start + timedelta(minutes=30)
+            else:  # 초록 마감부터 논문 마감까지 한 일정으로 표시
+                title = f"{c['name']} {c['year']} 초록~논문 마감"
+                desc = f"초록 마감 {when(first[1])}\n논문 마감 {when(last[1])}\n{info}"
             lines += [
                 "BEGIN:VEVENT",
-                f"UID:{c['id']}-{start:%Y%m%dT%H%M}@lab-feed.s3lab",
+                f"UID:{c['id']}-{last[1].astimezone(timezone.utc):%Y%m%dT%H%M}@lab-feed.s3lab",
                 f"DTSTAMP:{stamp}",
                 f"DTSTART:{start:%Y%m%dT%H%M%SZ}",
-                f"DTEND:{start + timedelta(minutes=30):%Y%m%dT%H%M%SZ}",
-                f"SUMMARY:{ics_text(f'{c['name']} {c['year']} {label}')}",
-                f"DESCRIPTION:{ics_text(f'{c['full']}\n{c['grade']}\n{c['date']} {c['place']}\n{c['link']}')}",
+                f"DTEND:{end:%Y%m%dT%H%M%SZ}",
+                f"SUMMARY:{ics_text(title)}",
+                f"DESCRIPTION:{ics_text(desc)}",
                 f"URL:{c['link']}",
                 "END:VEVENT",
             ]
