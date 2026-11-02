@@ -18,6 +18,7 @@ S3Lab Slack `#lab-피드`에 우수 학회 CFP와 정보컴퓨터공학부 대�
 - 학과 공지는 새 글마다 한 번
 
 매일 `#lab-피드` 채널 캔버스(마감 일정표)와 구독용 캘린더 [`cfp.ics`](https://raw.githubusercontent.com/PNU-S3lab/lab-feed/main/cfp.ics)도 갱신합니다.
+캘린더에는 학회마다 CFP가 올라온 날부터 마지막 마감일까지 이어지는 종일 일정과, 초록·논문 마감 시각 일정이 들어갑니다. CFP가 올라온 날은 출처 저장소에 그 연도 항목이 처음 등록된 날로 계산하므로 실제 공개일과 며칠 차이가 날 수 있습니다. 보안 학회의 초록 마감은 sec-deadlines의 comment 문구(예: 1 week before deadline)에서 계산합니다.
 
 첫 실행에서는 하나씩 알리지 않고 현재 접수 중인 목록만 한 번 올립니다. 이미 알린 항목은 `state.json`에 기록됩니다.
 

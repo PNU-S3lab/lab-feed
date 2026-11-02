@@ -11,9 +11,11 @@ import io
 import json
 import os
 import re
+import subprocess
+import tempfile
 import urllib.request
 import xml.etree.ElementTree as ET
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -28,6 +30,10 @@ RANK_CSV = ("https://gist.githubusercontent.com/Pusnow/6eb933355b5cb8d31ef1abcb3
             "CS%20%EB%B6%84%EC%95%BC%20%EC%9A%B0%EC%88%98%20%ED%95%99%EC%88%A0%EB%8C%80%ED%9A%8C%20%EB%AA%A9%EB%A1%9D.csv")
 SEC_YML = "https://raw.githubusercontent.com/sec-deadlines/sec-deadlines.github.io/master/_data/conferences.yml"
 AI_DIR = "https://api.github.com/repos/huggingface/ai-deadlines/contents/src/data/conferences"
+HISTORY = {  # CFP가 올라온 날 = 이 저장소에 해당 연도 항목이 처음 등록된 날
+    "sec": ("https://github.com/sec-deadlines/sec-deadlines.github.io", "_data/conferences.yml", "name"),
+    "ai": ("https://github.com/huggingface/ai-deadlines", "src/data/conferences", "title"),
+}
 DEPT_RSS = "https://cse.pusan.ac.kr/bbs/cse/2058/rssList.do?row=30"
 DEPT_BASE = "https://cse.pusan.ac.kr"
 
@@ -145,7 +151,7 @@ def sec_confs():
         papers = [dt for dt in (parse_dt(d, tz) for d in deadlines if d) if dt]
         abstracts = abstract_deadlines(e.get("comment"), papers)
         yield {
-            "name": e["name"], "year": e["year"], "full": e.get("description", ""),
+            "src": "sec", "name": e["name"], "year": e["year"], "full": e.get("description", ""),
             "link": e.get("link", ""), "date": e.get("date", ""), "place": e.get("place", ""),
             "core": next((core_of[t] for t in tags if t in core_of), ""),
             "dblp": dblp.group(1) if dblp else "",
@@ -169,7 +175,7 @@ def ai_confs():
                     if dt:
                         dls.append((labels[d["type"]], dt))
             yield {
-                "name": e["title"], "year": e["year"], "full": e.get("full_name", ""),
+                "src": "ai", "name": e["title"], "year": e["year"], "full": e.get("full_name", ""),
                 "link": e.get("link", ""), "date": e.get("date", ""),
                 "place": ", ".join(x for x in (e.get("city"), e.get("country")) if x),
                 "core": core.group(1) if core else "", "dblp": "", "deadlines": dls,
@@ -204,6 +210,46 @@ def cfp_line(c, all_deadlines=False):
     return f"• <{c['link']}|*{c['name']} {c['year']}*> ({c['grade']})\n    {due} · {c['date']} {c['place']}".rstrip()
 
 
+def first_listed(src):
+    """저장소 기록을 거슬러 올라가며 {(이름, 연도): 처음 등록된 날}을 만든다"""
+    url, path, key = HISTORY[src]
+    with tempfile.TemporaryDirectory() as tmp:
+        subprocess.run(["git", "clone", "-q", "--shallow-since=18 months ago", url, tmp], check=True)
+        git = ["git", "-C", tmp]
+        log = subprocess.run(git + ["log", "--format=@%H %cs", "--name-only", "--", path],
+                             capture_output=True, text=True, check=True).stdout
+        first = {}
+        for line in log.split("\n"):  # 최신 → 과거 순이라 마지막에 남는 값이 가장 이른 날
+            if line.startswith("@"):
+                commit, day = line[1:].split()
+                continue
+            if not line.endswith(".yml"):
+                continue
+            try:
+                entries = yaml.safe_load(subprocess.run(git + ["show", f"{commit}:{line}"], capture_output=True, text=True).stdout)
+            except yaml.YAMLError:
+                continue
+            for e in entries if isinstance(entries, list) else []:
+                if isinstance(e, dict) and e.get(key):
+                    first[(e[key], e.get("year"))] = date.fromisoformat(day)
+    return first
+
+
+def attach_opened(state, confs, today):
+    opened = state.setdefault("opened", {})
+    missing = {c["src"] for c in confs if c["id"] not in opened}
+    found = {}
+    for src in missing:
+        try:
+            found.update({(src, *k): v for k, v in first_listed(src).items()})
+        except (subprocess.CalledProcessError, OSError) as e:
+            print(f"{src} 기록 조회 실패: {e}")
+    for c in confs:
+        if c["id"] not in opened:  # 기록에서 못 찾으면 이 봇이 처음 본 날로 둔다
+            opened[c["id"]] = str(found.get((c["src"], c["name"], c["year"]), today))
+        c["opened"] = date.fromisoformat(opened[c["id"]])
+
+
 # ---------- 캘린더 ----------
 
 def ics_text(s):
@@ -220,27 +266,6 @@ def ics_fold(line):
     return "\r\n".join(out + [cur])
 
 
-def deadline_spans(deadlines):
-    """[(label, dt)] → 초록 마감은 바로 뒤의 논문 마감과 묶은 (처음, 끝) 쌍 목록"""
-    spans, pending = [], None
-    for d in deadlines:
-        if d[0] == "초록 마감":
-            if pending:
-                spans.append((pending, pending))
-            pending = d
-        elif pending and d[1] - pending[1] <= timedelta(days=60):
-            spans.append((pending, d))
-            pending = None
-        else:
-            if pending:
-                spans.append((pending, pending))
-                pending = None
-            spans.append((d, d))
-    if pending:
-        spans.append((pending, pending))
-    return spans
-
-
 def write_ics(confs, now):
     stamp = now.astimezone(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//S3Lab//lab-feed//KO", "CALSCALE:GREGORIAN",
@@ -248,21 +273,30 @@ def write_ics(confs, now):
              "X-WR-CALDESC:CORE A*·A 또는 정보과학회 최우수·우수 학회 마감일 (lab-feed)"]
     for c in confs:
         info = f"{c['full']}\n{c['grade']}\n{c['date']} {c['place']}\n{c['link']}"
-        for first, last in deadline_spans(c["deadlines"]):
-            start, end = first[1].astimezone(timezone.utc), last[1].astimezone(timezone.utc)
-            if first is last:
-                title, desc, end = f"{c['name']} {c['year']} {first[0]}", info, start + timedelta(minutes=30)
-            else:  # 초록 마감부터 논문 마감까지 한 일정으로 표시
-                title = f"{c['name']} {c['year']} 초록~논문 마감"
-                desc = f"초록 마감 {when(first[1])}\n논문 마감 {when(last[1])}\n{info}"
+        due = "\n".join(f"{label} {when(dt)}" for label, dt in c["deadlines"])
+        last = c["deadlines"][-1][1].astimezone(KST).date()
+        # CFP가 올라온 날부터 마지막 마감일까지 종일 막대로 보여 준다
+        lines += [
+            "BEGIN:VEVENT",
+            f"UID:{c['id']}-cfp@lab-feed.s3lab",
+            f"DTSTAMP:{stamp}",
+            f"DTSTART;VALUE=DATE:{min(c['opened'], last):%Y%m%d}",
+            f"DTEND;VALUE=DATE:{last + timedelta(days=1):%Y%m%d}",
+            f"SUMMARY:{ics_text(f'{c['name']} {c['year']} CFP')}",
+            f"DESCRIPTION:{ics_text(f'CFP 등록 {c['opened']:%m/%d}\n{due}\n{info}')}",
+            f"URL:{c['link']}",
+            "END:VEVENT",
+        ]
+        for label, dt in c["deadlines"]:
+            start = dt.astimezone(timezone.utc)
             lines += [
                 "BEGIN:VEVENT",
-                f"UID:{c['id']}-{last[1].astimezone(timezone.utc):%Y%m%dT%H%M}@lab-feed.s3lab",
+                f"UID:{c['id']}-{start:%Y%m%dT%H%M}@lab-feed.s3lab",
                 f"DTSTAMP:{stamp}",
                 f"DTSTART:{start:%Y%m%dT%H%M%SZ}",
-                f"DTEND:{end:%Y%m%dT%H%M%SZ}",
-                f"SUMMARY:{ics_text(title)}",
-                f"DESCRIPTION:{ics_text(desc)}",
+                f"DTEND:{start + timedelta(minutes=30):%Y%m%dT%H%M%SZ}",
+                f"SUMMARY:{ics_text(f'{c['name']} {c['year']} {label}')}",
+                f"DESCRIPTION:{ics_text(info)}",
                 f"URL:{c['link']}",
                 "END:VEVENT",
             ]
@@ -357,6 +391,7 @@ def main():
     state.setdefault("dept", [])
 
     confs = qualified(now)
+    attach_opened(state, confs, now.date())
     if args.dry_run:
         print(canvas_markdown(confs, now), end="\n\n")
     if args.canvas_only:
