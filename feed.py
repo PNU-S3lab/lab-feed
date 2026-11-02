@@ -13,7 +13,7 @@ import os
 import re
 import urllib.request
 import xml.etree.ElementTree as ET
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -103,6 +103,32 @@ def parse_dt(s, tz):
         return None
 
 
+MONTHS = {m: i for i, m in enumerate(
+    ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"], 1)}
+SPAN_RE = re.compile(r"([A-Za-z]+)\.? (\d{1,2})(?:\s*[-–]\s*(?:([A-Za-z]+)\.? )?(\d{1,2}))?(?:,? (\d{4}))?")
+
+
+def to_date(v):
+    return v if isinstance(v, date) else date.fromisoformat(str(v))
+
+
+def parse_span(text, year):
+    """'June 28 - July 1', 'March 10-14, 2025' 같은 개최 기간 → (시작일, 종료일). 못 읽으면 None"""
+    m = SPAN_RE.fullmatch(str(text or "").strip())
+    if not m or m[1][:3].lower() not in MONTHS:
+        return None
+    y = int(m[5] or year)
+    m1 = MONTHS[m[1][:3].lower()]
+    m2 = MONTHS.get((m[3] or m[1])[:3].lower())
+    if not m2:
+        return None
+    try:
+        first, last = date(y, m1, int(m[2])), date(y, m2, int(m[4] or m[2]))
+    except ValueError:
+        return None
+    return (first, last.replace(year=y + 1)) if last < first else (first, last)
+
+
 def sec_confs():
     core_of = {"ASTAR": "A*", "CORE-A": "A", "CORE-B": "B", "CORE-C": "C"}
     for e in yaml.safe_load(get(SEC_YML)):
@@ -116,7 +142,7 @@ def sec_confs():
             "name": e["name"], "year": e["year"], "full": e.get("description", ""),
             "link": e.get("link", ""), "date": e.get("date", ""), "place": e.get("place", ""),
             "core": next((core_of[t] for t in tags if t in core_of), ""),
-            "dblp": dblp.group(1) if dblp else "",
+            "dblp": dblp.group(1) if dblp else "", "span": parse_span(e.get("date"), e["year"]),
             "deadlines": [("마감", dt) for dt in (parse_dt(d, tz) for d in deadlines if d) if dt],
         }
 
@@ -140,6 +166,8 @@ def ai_confs():
                 "link": e.get("link", ""), "date": e.get("date", ""),
                 "place": ", ".join(x for x in (e.get("city"), e.get("country")) if x),
                 "core": core.group(1) if core else "", "dblp": "", "deadlines": dls,
+                "span": (to_date(e.get("start")), to_date(e.get("end"))) if e.get("start") and e.get("end")
+                else parse_span(e.get("date"), e["year"]),
             }
 
 
@@ -203,6 +231,19 @@ def write_ics(confs, now):
                 f"DTEND:{start + timedelta(minutes=30):%Y%m%dT%H%M%SZ}",
                 f"SUMMARY:{ics_text(f'{c['name']} {c['year']} {label}')}",
                 f"DESCRIPTION:{ics_text(f'{c['full']}\n{c['grade']}\n{c['date']} {c['place']}\n{c['link']}')}",
+                f"URL:{c['link']}",
+                "END:VEVENT",
+            ]
+        if c.get("span"):
+            first, last = c["span"]
+            lines += [
+                "BEGIN:VEVENT",
+                f"UID:{c['id']}-event@lab-feed.s3lab",
+                f"DTSTAMP:{stamp}",
+                f"DTSTART;VALUE=DATE:{first:%Y%m%d}",
+                f"DTEND;VALUE=DATE:{last + timedelta(days=1):%Y%m%d}",
+                f"SUMMARY:{ics_text(f'{c['name']} {c['year']} 개최' + (f' ({c['place']})' if c['place'] else ''))}",
+                f"DESCRIPTION:{ics_text(f'{c['full']}\n{c['grade']}\n{c['link']}')}",
                 f"URL:{c['link']}",
                 "END:VEVENT",
             ]
