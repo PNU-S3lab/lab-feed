@@ -1,0 +1,15 @@
+display_information:
+  name: lab-feed
+  description: 우수 학회 CFP와 학과 대학원 공지를 lab-피드 채널에 올립니다.
+features:
+  bot_user:
+    display_name: lab-feed
+    always_online: false
+oauth_config:
+  scopes:
+    bot:
+      - incoming-webhook
+settings:
+  org_deploy_enabled: false
+  socket_mode_enabled: false
+  token_rotation_enabled: false
