@@ -33,6 +33,7 @@ DEPT_BASE = "https://cse.pusan.ac.kr"
 
 REMIND_DAYS = 14
 STATE_FILE = Path(os.environ.get("STATE_FILE", Path(__file__).with_name("state.json")))
+ICS_FILE = Path(os.environ.get("ICS_FILE", Path(__file__).with_name("cfp.ics")))
 VARIANT_RE = re.compile(r"\s*\((oral|poster|spotlight)\)$")
 
 
@@ -169,6 +170,45 @@ def cfp_line(c, all_deadlines=False):
     return f"• <{c['link']}|*{c['name']} {c['year']}*> ({c['grade']})\n    {due} · {c['date']} {c['place']}".rstrip()
 
 
+# ---------- 캘린더 ----------
+
+def ics_text(s):
+    return s.replace("\\", "\\\\").replace(";", "\\;").replace(",", "\\,").replace("\n", "\\n")
+
+
+def ics_fold(line):
+    out, cur = [], ""
+    for ch in line:
+        if len((cur + ch).encode()) > 74:
+            out.append(cur)
+            cur = " "
+        cur += ch
+    return "\r\n".join(out + [cur])
+
+
+def write_ics(confs, now):
+    stamp = now.astimezone(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//S3Lab//lab-feed//KO", "CALSCALE:GREGORIAN",
+             "X-WR-CALNAME:S3Lab 학회 마감", "X-WR-TIMEZONE:Asia/Seoul",
+             "X-WR-CALDESC:CORE A*·A 또는 정보과학회 최우수·우수 학회 마감일 (lab-feed)"]
+    for c in confs:
+        for label, dt in c["deadlines"]:
+            start = dt.astimezone(timezone.utc)
+            lines += [
+                "BEGIN:VEVENT",
+                f"UID:{c['id']}-{start:%Y%m%dT%H%M}@lab-feed.s3lab",
+                f"DTSTAMP:{stamp}",
+                f"DTSTART:{start:%Y%m%dT%H%M%SZ}",
+                f"DTEND:{start + timedelta(minutes=30):%Y%m%dT%H%M%SZ}",
+                f"SUMMARY:{ics_text(f'{c['name']} {c['year']} {label}')}",
+                f"DESCRIPTION:{ics_text(f'{c['full']}\n{c['grade']}\n{c['date']} {c['place']}\n{c['link']}')}",
+                f"URL:{c['link']}",
+                "END:VEVENT",
+            ]
+    lines.append("END:VCALENDAR")
+    ICS_FILE.write_text("\r\n".join(ics_fold(l) for l in lines) + "\r\n")
+
+
 # ---------- 학과 공지 ----------
 
 def dept_posts():
@@ -239,6 +279,7 @@ def main():
     state["dept"] = state["dept"][-200:]
     if not args.dry_run:
         STATE_FILE.write_text(json.dumps(state, ensure_ascii=False, indent=1))
+        write_ics(confs, now)
 
 
 if __name__ == "__main__":
