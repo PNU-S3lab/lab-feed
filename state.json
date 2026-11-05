@@ -17,7 +17,10 @@
   "pam-2027-202611062359",
   "s&poakland-2027-202611102359",
   "imc-2027-202611102359",
-  "codaspy-2027-202611162359"
+  "codaspy-2027-202611162359",
+  "s&poakland-2027-202611172359",
+  "imc-2027-202611172359",
+  "wsdm-2027-202611172359"
  ],
  "dept": [
   "/bbs/cse/2058/1468754/artclView.do",
@@ -49,7 +52,8 @@
   "/bbs/cse/2058/1456619/artclView.do",
   "/bbs/cse/2058/1456584/artclView.do",
   "/bbs/cse/2058/1456578/artclView.do",
-  "/bbs/cse/2058/1456575/artclView.do"
+  "/bbs/cse/2058/1456575/artclView.do",
+  "/bbs/cse/2058/1471464/artclView.do"
  ],
  "canvas_id": "F0CDWA7LZK7",
  "opened": {
