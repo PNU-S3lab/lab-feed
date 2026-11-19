@@ -11,7 +11,10 @@
   "issta-2027",
   "acns-2027",
   "usenixsecurity-2027",
-  "csf-2027"
+  "csf-2027",
+  "wisec-2027",
+  "ase-2027",
+  "icse-2028"
  ],
  "reminded": [
   "pam-2027-202611062359",
@@ -23,7 +26,8 @@
   "wsdm-2027-202611172359",
   "codaspy-2027-202611232359",
   "euros&p-2027-202611252359",
-  "dsn-2027-202611252359"
+  "dsn-2027-202611252359",
+  "wisec-2027-202611302359"
  ],
  "dept": [
   "/bbs/cse/2058/1468754/artclView.do",
@@ -60,7 +64,8 @@
   "/bbs/cse/2058/1471705/artclView.do",
   "/bbs/cse/2058/1472980/artclView.do",
   "/bbs/cse/2058/1473763/artclView.do",
-  "/bbs/cse/2058/1473858/artclView.do"
+  "/bbs/cse/2058/1473858/artclView.do",
+  "/bbs/cse/2058/1474375/artclView.do"
  ],
  "canvas_id": "F0CDWA7LZK7",
  "opened": {
@@ -75,6 +80,9 @@
   "issta-2027": "2026-08-07",
   "usenixsecurity-2027": "2026-03-19",
   "acns-2027": "2026-05-27",
-  "csf-2027": "2026-07-06"
+  "csf-2027": "2026-07-06",
+  "wisec-2027": "2026-11-18",
+  "ase-2027": "2026-11-18",
+  "icse-2028": "2026-11-18"
  }
 }

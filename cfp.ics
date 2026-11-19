@@ -7,98 +7,8 @@ X-WR-TIMEZONE:Asia/Seoul
 X-WR-CALDESC:CORE A*·A 또는 정보과학회 최우수·우수 학회 
  마감일 (lab-feed)
 BEGIN:VEVENT
-UID:s&poakland-2027-cfp@lab-feed.s3lab
-DTSTAMP:20261118T045614Z
-DTSTART;VALUE=DATE:20260428
-DTEND;VALUE=DATE:20261119
-SUMMARY:S&P (Oakland) 2027 CFP
-DESCRIPTION:CFP 등록 04/28\n논문 마감 11/18(수) 20:59\nIEEE Symposi
- um on Security and Privacy\nCORE A* · 정보과학회 최우수 · BK 4\
- nMay 17-20 Montreal\, Canada\nhttps://sp2027.ieee-security.org/
-URL:https://sp2027.ieee-security.org/
-END:VEVENT
-BEGIN:VEVENT
-UID:s&poakland-2027-20261118T1159@lab-feed.s3lab
-DTSTAMP:20261118T045614Z
-DTSTART:20261118T115900Z
-DTEND:20261118T122900Z
-SUMMARY:S&P (Oakland) 2027 논문 마감
-DESCRIPTION:IEEE Symposium on Security and Privacy\nCORE A* · 정보과
- 학회 최우수 · BK 4\nMay 17-20 Montreal\, Canada\nhttps://sp2027.iee
- e-security.org/
-URL:https://sp2027.ieee-security.org/
-END:VEVENT
-BEGIN:VEVENT
-UID:imc-2027-cfp@lab-feed.s3lab
-DTSTAMP:20261118T045614Z
-DTSTART;VALUE=DATE:20261016
-DTEND;VALUE=DATE:20270409
-SUMMARY:IMC 2027 CFP
-DESCRIPTION:CFP 등록 10/16\n논문 마감 11/18(수) 20:59\n초록 마
- 감 04/01(목) 20:59\n논문 마감 04/08(목) 20:59\nACM Internet Measur
- ement Conference\nCORE A · 정보과학회 우수 · BK 2\nOctober 25-29
-  Atlanta\, GA\, USA\nhttps://conferences.sigcomm.org/imc/2027/
-URL:https://conferences.sigcomm.org/imc/2027/
-END:VEVENT
-BEGIN:VEVENT
-UID:imc-2027-20261118T1159@lab-feed.s3lab
-DTSTAMP:20261118T045614Z
-DTSTART:20261118T115900Z
-DTEND:20261118T122900Z
-SUMMARY:IMC 2027 논문 마감
-DESCRIPTION:ACM Internet Measurement Conference\nCORE A · 정보과학회
-  우수 · BK 2\nOctober 25-29 Atlanta\, GA\, USA\nhttps://conferences.si
- gcomm.org/imc/2027/
-URL:https://conferences.sigcomm.org/imc/2027/
-END:VEVENT
-BEGIN:VEVENT
-UID:imc-2027-20270401T1159@lab-feed.s3lab
-DTSTAMP:20261118T045614Z
-DTSTART:20270401T115900Z
-DTEND:20270401T122900Z
-SUMMARY:IMC 2027 초록 마감
-DESCRIPTION:ACM Internet Measurement Conference\nCORE A · 정보과학회
-  우수 · BK 2\nOctober 25-29 Atlanta\, GA\, USA\nhttps://conferences.si
- gcomm.org/imc/2027/
-URL:https://conferences.sigcomm.org/imc/2027/
-END:VEVENT
-BEGIN:VEVENT
-UID:imc-2027-20270408T1159@lab-feed.s3lab
-DTSTAMP:20261118T045614Z
-DTSTART:20270408T115900Z
-DTEND:20270408T122900Z
-SUMMARY:IMC 2027 논문 마감
-DESCRIPTION:ACM Internet Measurement Conference\nCORE A · 정보과학회
-  우수 · BK 2\nOctober 25-29 Atlanta\, GA\, USA\nhttps://conferences.si
- gcomm.org/imc/2027/
-URL:https://conferences.sigcomm.org/imc/2027/
-END:VEVENT
-BEGIN:VEVENT
-UID:wsdm-2027-cfp@lab-feed.s3lab
-DTSTAMP:20261118T045614Z
-DTSTART;VALUE=DATE:20260807
-DTEND;VALUE=DATE:20261119
-SUMMARY:WSDM 2027 CFP
-DESCRIPTION:CFP 등록 08/07\n논문 마감 11/18(수) 20:59\nACM Internat
- ional Conference on Web Search and Data Mining\nCORE A* · 정보과학
- 회 최우수 · BK 3\nFebruary 15-19\, 2027 Hong Kong\, Hong Kong\nhttps
- ://www.wsdm-conference.org/2027/
-URL:https://www.wsdm-conference.org/2027/
-END:VEVENT
-BEGIN:VEVENT
-UID:wsdm-2027-20261118T1159@lab-feed.s3lab
-DTSTAMP:20261118T045614Z
-DTSTART:20261118T115959Z
-DTEND:20261118T122959Z
-SUMMARY:WSDM 2027 논문 마감
-DESCRIPTION:ACM International Conference on Web Search and Data Mining\nCO
- RE A* · 정보과학회 최우수 · BK 3\nFebruary 15-19\, 2027 Hong Ko
- ng\, Hong Kong\nhttps://www.wsdm-conference.org/2027/
-URL:https://www.wsdm-conference.org/2027/
-END:VEVENT
-BEGIN:VEVENT
 UID:codaspy-2027-cfp@lab-feed.s3lab
-DTSTAMP:20261118T045614Z
+DTSTAMP:20261119T044959Z
 DTSTART;VALUE=DATE:20261001
 DTEND;VALUE=DATE:20261125
 SUMMARY:CODASPY 2027 CFP
@@ -110,7 +20,7 @@ URL:http://www.codaspy.org/2027/
 END:VEVENT
 BEGIN:VEVENT
 UID:codaspy-2027-20261124T1159@lab-feed.s3lab
-DTSTAMP:20261118T045614Z
+DTSTAMP:20261119T044959Z
 DTSTART:20261124T115900Z
 DTEND:20261124T122900Z
 SUMMARY:CODASPY 2027 논문 마감
@@ -121,7 +31,7 @@ URL:http://www.codaspy.org/2027/
 END:VEVENT
 BEGIN:VEVENT
 UID:euros&p-2027-cfp@lab-feed.s3lab
-DTSTAMP:20261118T045614Z
+DTSTAMP:20261119T044959Z
 DTSTART;VALUE=DATE:20260807
 DTEND;VALUE=DATE:20261204
 SUMMARY:Euro S&P 2027 CFP
@@ -133,7 +43,7 @@ URL:https://eurosp2027.ieee-security.org/
 END:VEVENT
 BEGIN:VEVENT
 UID:euros&p-2027-20261126T1159@lab-feed.s3lab
-DTSTAMP:20261118T045614Z
+DTSTAMP:20261119T044959Z
 DTSTART:20261126T115900Z
 DTEND:20261126T122900Z
 SUMMARY:Euro S&P 2027 초록 마감
@@ -144,7 +54,7 @@ URL:https://eurosp2027.ieee-security.org/
 END:VEVENT
 BEGIN:VEVENT
 UID:euros&p-2027-20261203T1159@lab-feed.s3lab
-DTSTAMP:20261118T045614Z
+DTSTAMP:20261119T044959Z
 DTSTART:20261203T115900Z
 DTEND:20261203T122900Z
 SUMMARY:Euro S&P 2027 논문 마감
@@ -155,7 +65,7 @@ URL:https://eurosp2027.ieee-security.org/
 END:VEVENT
 BEGIN:VEVENT
 UID:dsn-2027-cfp@lab-feed.s3lab
-DTSTAMP:20261118T045614Z
+DTSTAMP:20261119T044959Z
 DTSTART;VALUE=DATE:20260629
 DTEND;VALUE=DATE:20261204
 SUMMARY:DSN 2027 CFP
@@ -167,7 +77,7 @@ URL:https://dsn2027-berlin.github.io/
 END:VEVENT
 BEGIN:VEVENT
 UID:dsn-2027-20261126T1159@lab-feed.s3lab
-DTSTAMP:20261118T045614Z
+DTSTAMP:20261119T044959Z
 DTSTART:20261126T115900Z
 DTEND:20261126T122900Z
 SUMMARY:DSN 2027 초록 마감
@@ -178,7 +88,7 @@ URL:https://dsn2027-berlin.github.io/
 END:VEVENT
 BEGIN:VEVENT
 UID:dsn-2027-20261203T1159@lab-feed.s3lab
-DTSTAMP:20261118T045614Z
+DTSTAMP:20261119T044959Z
 DTSTART:20261203T115900Z
 DTEND:20261203T122900Z
 SUMMARY:DSN 2027 논문 마감
@@ -188,8 +98,42 @@ DESCRIPTION:The International Conference on Dependable Systems and Network
 URL:https://dsn2027-berlin.github.io/
 END:VEVENT
 BEGIN:VEVENT
+UID:wisec-2027-cfp@lab-feed.s3lab
+DTSTAMP:20261119T044959Z
+DTSTART;VALUE=DATE:20261118
+DTEND;VALUE=DATE:20270217
+SUMMARY:WiSec 2027 CFP
+DESCRIPTION:CFP 등록 11/18\n마감 12/01(화) 20:59\n마감 02/16(화) 2
+ 0:59\nACM Conference on Security and Privacy in Wireless and Mobile Netwo
+ rks\nCORE B · 정보과학회 우수 · BK 없음\nJune 29 - July 2 Sing
+ apore\nhttps://ntu-dtc.github.io/wisec2027/
+URL:https://ntu-dtc.github.io/wisec2027/
+END:VEVENT
+BEGIN:VEVENT
+UID:wisec-2027-20261201T1159@lab-feed.s3lab
+DTSTAMP:20261119T044959Z
+DTSTART:20261201T115900Z
+DTEND:20261201T122900Z
+SUMMARY:WiSec 2027 마감
+DESCRIPTION:ACM Conference on Security and Privacy in Wireless and Mobile 
+ Networks\nCORE B · 정보과학회 우수 · BK 없음\nJune 29 - July 2
+  Singapore\nhttps://ntu-dtc.github.io/wisec2027/
+URL:https://ntu-dtc.github.io/wisec2027/
+END:VEVENT
+BEGIN:VEVENT
+UID:wisec-2027-20270216T1159@lab-feed.s3lab
+DTSTAMP:20261119T044959Z
+DTSTART:20270216T115900Z
+DTEND:20270216T122900Z
+SUMMARY:WiSec 2027 마감
+DESCRIPTION:ACM Conference on Security and Privacy in Wireless and Mobile 
+ Networks\nCORE B · 정보과학회 우수 · BK 없음\nJune 29 - July 2
+  Singapore\nhttps://ntu-dtc.github.io/wisec2027/
+URL:https://ntu-dtc.github.io/wisec2027/
+END:VEVENT
+BEGIN:VEVENT
 UID:asiaccs-2027-cfp@lab-feed.s3lab
-DTSTAMP:20261118T045614Z
+DTSTAMP:20261119T044959Z
 DTSTART;VALUE=DATE:20260430
 DTEND;VALUE=DATE:20261213
 SUMMARY:ASIA CCS 2027 CFP
@@ -201,7 +145,7 @@ URL:https://asiaccs2027.cityu.edu.mo/home/index.html
 END:VEVENT
 BEGIN:VEVENT
 UID:asiaccs-2027-20261212T1159@lab-feed.s3lab
-DTSTAMP:20261118T045614Z
+DTSTAMP:20261119T044959Z
 DTSTART:20261212T115900Z
 DTEND:20261212T122900Z
 SUMMARY:ASIA CCS 2027 마감
@@ -212,7 +156,7 @@ URL:https://asiaccs2027.cityu.edu.mo/home/index.html
 END:VEVENT
 BEGIN:VEVENT
 UID:issta-2027-cfp@lab-feed.s3lab
-DTSTAMP:20261118T045614Z
+DTSTAMP:20261119T044959Z
 DTSTART;VALUE=DATE:20260807
 DTEND;VALUE=DATE:20270113
 SUMMARY:ISSTA 2027 CFP
@@ -224,7 +168,7 @@ URL:https://conf.researchr.org/home/issta-2027
 END:VEVENT
 BEGIN:VEVENT
 UID:issta-2027-20270109T1159@lab-feed.s3lab
-DTSTAMP:20261118T045614Z
+DTSTAMP:20261119T044959Z
 DTSTART:20270109T115900Z
 DTEND:20270109T122900Z
 SUMMARY:ISSTA 2027 초록 마감
@@ -235,7 +179,7 @@ URL:https://conf.researchr.org/home/issta-2027
 END:VEVENT
 BEGIN:VEVENT
 UID:issta-2027-20270112T1159@lab-feed.s3lab
-DTSTAMP:20261118T045614Z
+DTSTAMP:20261119T044959Z
 DTSTART:20270112T115900Z
 DTEND:20270112T122900Z
 SUMMARY:ISSTA 2027 논문 마감
@@ -246,7 +190,7 @@ URL:https://conf.researchr.org/home/issta-2027
 END:VEVENT
 BEGIN:VEVENT
 UID:usenixsecurity-2027-cfp@lab-feed.s3lab
-DTSTAMP:20261118T045614Z
+DTSTAMP:20261119T044959Z
 DTSTART;VALUE=DATE:20260319
 DTEND;VALUE=DATE:20270128
 SUMMARY:USENIX Security 2027 CFP
@@ -258,7 +202,7 @@ URL:https://www.usenix.org/conference/usenixsecurity27
 END:VEVENT
 BEGIN:VEVENT
 UID:usenixsecurity-2027-20270120T1159@lab-feed.s3lab
-DTSTAMP:20261118T045614Z
+DTSTAMP:20261119T044959Z
 DTSTART:20270120T115900Z
 DTEND:20270120T122900Z
 SUMMARY:USENIX Security 2027 초록 마감
@@ -269,7 +213,7 @@ URL:https://www.usenix.org/conference/usenixsecurity27
 END:VEVENT
 BEGIN:VEVENT
 UID:usenixsecurity-2027-20270127T1159@lab-feed.s3lab
-DTSTAMP:20261118T045614Z
+DTSTAMP:20261119T044959Z
 DTSTART:20270127T115900Z
 DTEND:20270127T122900Z
 SUMMARY:USENIX Security 2027 논문 마감
@@ -280,7 +224,7 @@ URL:https://www.usenix.org/conference/usenixsecurity27
 END:VEVENT
 BEGIN:VEVENT
 UID:acns-2027-cfp@lab-feed.s3lab
-DTSTAMP:20261118T045614Z
+DTSTAMP:20261119T044959Z
 DTSTART;VALUE=DATE:20260527
 DTEND;VALUE=DATE:20270123
 SUMMARY:ACNS 2027 CFP
@@ -292,7 +236,7 @@ URL:https://acns2027.isg.rhul.ac.uk/
 END:VEVENT
 BEGIN:VEVENT
 UID:acns-2027-20270122T1159@lab-feed.s3lab
-DTSTAMP:20261118T045614Z
+DTSTAMP:20261119T044959Z
 DTSTART:20270122T115900Z
 DTEND:20270122T122900Z
 SUMMARY:ACNS 2027 마감
@@ -303,7 +247,7 @@ URL:https://acns2027.isg.rhul.ac.uk/
 END:VEVENT
 BEGIN:VEVENT
 UID:csf-2027-cfp@lab-feed.s3lab
-DTSTAMP:20261118T045614Z
+DTSTAMP:20261119T044959Z
 DTSTART;VALUE=DATE:20260706
 DTEND;VALUE=DATE:20270130
 SUMMARY:CSF 2027 CFP
@@ -314,7 +258,7 @@ URL:https://www.ieee-security.org/TC/CSF2027/
 END:VEVENT
 BEGIN:VEVENT
 UID:csf-2027-20270129T1159@lab-feed.s3lab
-DTSTAMP:20261118T045614Z
+DTSTAMP:20261119T044959Z
 DTSTART:20270129T115900Z
 DTEND:20270129T122900Z
 SUMMARY:CSF 2027 마감
@@ -322,5 +266,96 @@ DESCRIPTION:IEEE Computer Security Foundations Symposium\nCORE A · 정보
  과학회 우수 · BK 1\nTBA Tokyo\, Japan\nhttps://www.ieee-security.or
  g/TC/CSF2027/
 URL:https://www.ieee-security.org/TC/CSF2027/
+END:VEVENT
+BEGIN:VEVENT
+UID:ase-2027-cfp@lab-feed.s3lab
+DTSTAMP:20261119T044959Z
+DTSTART;VALUE=DATE:20261118
+DTEND;VALUE=DATE:20270312
+SUMMARY:ASE 2027 CFP
+DESCRIPTION:CFP 등록 11/18\n마감 03/11(목) 20:59\nIEEE/ACM Automated 
+ Software Engineering\nCORE A* · 정보과학회 최우수 · BK 3\nOctob
+ er 24 - 28 El Paso\, Texas\, United States\nhttps://conf.researchr.org/ho
+ me/ase-2027
+URL:https://conf.researchr.org/home/ase-2027
+END:VEVENT
+BEGIN:VEVENT
+UID:ase-2027-20270311T1159@lab-feed.s3lab
+DTSTAMP:20261119T044959Z
+DTSTART:20270311T115900Z
+DTEND:20270311T122900Z
+SUMMARY:ASE 2027 마감
+DESCRIPTION:IEEE/ACM Automated Software Engineering\nCORE A* · 정보과
+ 학회 최우수 · BK 3\nOctober 24 - 28 El Paso\, Texas\, United States
+ \nhttps://conf.researchr.org/home/ase-2027
+URL:https://conf.researchr.org/home/ase-2027
+END:VEVENT
+BEGIN:VEVENT
+UID:imc-2027-cfp@lab-feed.s3lab
+DTSTAMP:20261119T044959Z
+DTSTART;VALUE=DATE:20261016
+DTEND;VALUE=DATE:20270409
+SUMMARY:IMC 2027 CFP
+DESCRIPTION:CFP 등록 10/16\n초록 마감 04/01(목) 20:59\n논문 마
+ 감 04/08(목) 20:59\nACM Internet Measurement Conference\nCORE A · 정
+ 보과학회 우수 · BK 2\nOctober 25-29 Atlanta\, GA\, USA\nhttps://co
+ nferences.sigcomm.org/imc/2027/
+URL:https://conferences.sigcomm.org/imc/2027/
+END:VEVENT
+BEGIN:VEVENT
+UID:imc-2027-20270401T1159@lab-feed.s3lab
+DTSTAMP:20261119T044959Z
+DTSTART:20270401T115900Z
+DTEND:20270401T122900Z
+SUMMARY:IMC 2027 초록 마감
+DESCRIPTION:ACM Internet Measurement Conference\nCORE A · 정보과학회
+  우수 · BK 2\nOctober 25-29 Atlanta\, GA\, USA\nhttps://conferences.si
+ gcomm.org/imc/2027/
+URL:https://conferences.sigcomm.org/imc/2027/
+END:VEVENT
+BEGIN:VEVENT
+UID:imc-2027-20270408T1159@lab-feed.s3lab
+DTSTAMP:20261119T044959Z
+DTSTART:20270408T115900Z
+DTEND:20270408T122900Z
+SUMMARY:IMC 2027 논문 마감
+DESCRIPTION:ACM Internet Measurement Conference\nCORE A · 정보과학회
+  우수 · BK 2\nOctober 25-29 Atlanta\, GA\, USA\nhttps://conferences.si
+ gcomm.org/imc/2027/
+URL:https://conferences.sigcomm.org/imc/2027/
+END:VEVENT
+BEGIN:VEVENT
+UID:icse-2028-cfp@lab-feed.s3lab
+DTSTAMP:20261119T044959Z
+DTSTART;VALUE=DATE:20261118
+DTEND;VALUE=DATE:20270703
+SUMMARY:ICSE 2028 CFP
+DESCRIPTION:CFP 등록 11/18\n초록 마감 06/25(금) 20:59\n논문 마
+ 감 07/02(금) 20:59\nIEEE/ACM International Conference on Software Engin
+ eering\nCORE A* · 정보과학회 최우수 · BK 4\nApril 29 - May 7 Ha
+ waii\, USA\nhttps://conf.researchr.org/home/icse-2028
+URL:https://conf.researchr.org/home/icse-2028
+END:VEVENT
+BEGIN:VEVENT
+UID:icse-2028-20270625T1159@lab-feed.s3lab
+DTSTAMP:20261119T044959Z
+DTSTART:20270625T115900Z
+DTEND:20270625T122900Z
+SUMMARY:ICSE 2028 초록 마감
+DESCRIPTION:IEEE/ACM International Conference on Software Engineering\nCOR
+ E A* · 정보과학회 최우수 · BK 4\nApril 29 - May 7 Hawaii\, USA\
+ nhttps://conf.researchr.org/home/icse-2028
+URL:https://conf.researchr.org/home/icse-2028
+END:VEVENT
+BEGIN:VEVENT
+UID:icse-2028-20270702T1159@lab-feed.s3lab
+DTSTAMP:20261119T044959Z
+DTSTART:20270702T115900Z
+DTEND:20270702T122900Z
+SUMMARY:ICSE 2028 논문 마감
+DESCRIPTION:IEEE/ACM International Conference on Software Engineering\nCOR
+ E A* · 정보과학회 최우수 · BK 4\nApril 29 - May 7 Hawaii\, USA\
+ nhttps://conf.researchr.org/home/icse-2028
+URL:https://conf.researchr.org/home/icse-2028
 END:VEVENT
 END:VCALENDAR
