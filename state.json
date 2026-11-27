@@ -14,7 +14,8 @@
   "csf-2027",
   "wisec-2027",
   "ase-2027",
-  "icse-2028"
+  "icse-2028",
+  "atc-2027"
  ],
  "reminded": [
   "pam-2027-202611062359",
@@ -69,7 +70,9 @@
   "/bbs/cse/2058/1473858/artclView.do",
   "/bbs/cse/2058/1474375/artclView.do",
   "/bbs/cse/2058/1474742/artclView.do",
-  "/bbs/cse/2058/1475232/artclView.do"
+  "/bbs/cse/2058/1475232/artclView.do",
+  "/bbs/cse/2058/1475356/artclView.do",
+  "/bbs/cse/2058/1475411/artclView.do"
  ],
  "canvas_id": "F0CDWA7LZK7",
  "opened": {
@@ -87,6 +90,7 @@
   "csf-2027": "2026-07-06",
   "wisec-2027": "2026-11-18",
   "ase-2027": "2026-11-18",
-  "icse-2028": "2026-11-18"
+  "icse-2028": "2026-11-18",
+  "atc-2027": "2026-11-26"
  }
 }
